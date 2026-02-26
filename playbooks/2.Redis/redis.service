@@ -1,0 +1,15 @@
+[Unit]
+Description=Redis Server
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/usr/local/bin/redis-server /etc/redis.conf
+ExecStop=/usr/local/bin/redis-cli shutdown
+Restart=on-failure
+RestartSec=5s
+User=redis
+Group=redis
+
+[Install]
+WantedBy=multi-user.target
